@@ -1,7 +1,7 @@
 # About this repository
 
 jtimon can collect openconfig telemetry from Junos devices  
-it can also exports telemetry data received from Junos devices to Prometheus. The default export port is 8090, it is configurable.  
+it can also export the telemetry data received from Junos devices to Prometheus. The default export port is 8090, it is configurable.  
 
 We will use jtimon to collect openconfig telemetry from junos devices.  
 The data collected by jtimon will be exported to Prometheus
@@ -45,12 +45,13 @@ $ tar xvfz prometheus-2.5.0.linux-amd64.tar.gz
 ```
 $ cd prometheus-2.5.0.linux-amd64/
 ```
+Verify 
 ```
 $ ./prometheus --version
 $ ./prometheus --help
 ```
 ## configure Prometheus  
-update the ```prometheus.yml``` configuration file [use this file](prometheus.yml)
+update the ```prometheus.yml``` configuration file ([use this file](prometheus.yml))
 
 ```
 $ vi prometheus.yml
@@ -59,6 +60,9 @@ $ vi prometheus.yml
 ```
 ./prometheus --config.file=prometheus.yml
 ```
+## prometheus GUI
+
+The url is ```http://<prometheus_ip>:9090```  
 
 # jtimon
 
@@ -103,16 +107,16 @@ create a directory projects
 $ mkdir projects
 ```
 set environment variables
-The GOPATH variable indicates places to look for Go code
-The GOROOT environment variable indicates the path you choosed to unpack the package
-The PATH environment variable specifies the directories in which the system will check when looking for commands (when a user types in a command without typing the whole path to the file on the command line)
+- The GOPATH variable indicates places to look for Go code
+- The GOROOT environment variable indicates the path you choosed to unpack the package
+- The PATH environment variable specifies the directories in which the system will check when looking for commands (when a user types in a command without typing the whole path to the file on the command line)
 
 ```
 $ export GOPATH=$HOME/projects
 $ export GOROOT=/usr/local/go
 $ export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 ```
-Display the value of env variables
+Display the value of environment variables
 ```
 $ printenv
 $ echo $HOME
