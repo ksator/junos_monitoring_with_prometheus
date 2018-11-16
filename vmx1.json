@@ -4,9 +4,6 @@
     "user": "lab",
     "password": "m0naco",
     "cid": "my-client-id",
-    "grpc" : {
-        "ws" : 524288
-    },
     "paths": [{
         "path": "/interfaces",
         "freq": 2000
