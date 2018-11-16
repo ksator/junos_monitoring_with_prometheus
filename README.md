@@ -50,8 +50,8 @@ $ ./prometheus --version
 $ ./prometheus --help
 ```
 ## configure Prometheus  
-update the ```prometheus.yml``` configuration file  
-[use this file](prometheus.yml) 
+update the ```prometheus.yml``` configuration file [use this file](prometheus.yml)
+
 ```
 $ vi prometheus.yml
 ```
@@ -68,7 +68,7 @@ https://github.com/nileshsimaria/jtimon
 https://forums.juniper.net/t5/Automation/OpenConfig-and-gRPC-Junos-Telemetry-Interface/ta-p/316090  
 https://github.com/nileshsimaria/jtimon/wiki/JTIMON-and-Prometheus
 
-## GO 
+## Install GO 
 
 find out which ubuntu release you are using
 ```
