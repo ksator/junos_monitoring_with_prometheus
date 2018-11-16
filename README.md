@@ -165,19 +165,18 @@ Usage of jtimon:
       --prometheus-port int32      Prometheus port (default 8090)
       --stats-handler              Use GRPC statshandler
       --version                    Print version and build-time of the binary and exit
-
 ```
 
 ## create a jtimon configuration file
 [use this file](vmx1.json)
 ```
-# vi vmx1.json
+$ vi vmx1.json
 ```
 
 ## alias
 
 you can use alias.  
-it is optional.  
+This is optional.  
 If JTIMON does not find alias, it would use the names of the path as received from JTI (it will replace '/' with '_').
 
 ```
@@ -195,52 +194,22 @@ ifl:/interfaces/interface/subinterfaces/subinterface/index
 logical-interface-index:/interfaces/interface/subinterfaces/subinterface/@index
 ifl-in-ucast-pkts:/interfaces/interface/subinterfaces/subinterface/state/counters/in-unicast-pkts
 ifl-in-mcast-pkts:/interfaces/interface/subinterfaces/subinterface/state/counters/in-multicast-pkts
-jcluser@ubuntu:~/projects$
 ```
 
 ## run jtimon and export data to prometheus 
 
-run jtimon with the configuration file ```vmx1.json``` and print telemetry data and export data to prometheus  
- 
+run jtimon with the configuration file ```vmx1.json``` and print telemetry data and export telemetry data to prometheus  
 ```
 $ jtimon --prometheus --prometheus-port 8090 --config vmx1.json --print --alias-file alias.txt
-
 ```
 
-# verify 
-
-## prometheus GUI
-
-```http://<prometheus_ip>:9090```  
-```http://<prometheus_ip>:9090metrics```  
-
-## prometheus API 
+# verify jtimon is exporting telemetry data to prometheus
 
 ```
-curl -g 'http://172.30.52.37:9090/api/v1/series?match[]=up'
-```
-```
-curl -g 'http://172.30.52.37:9090/api/v1/series?match[]=jtimon'
-```
-```
-curl -g 'http://172.30.52.37:9090/api/v1/label/job/values'
+$ netstat -ntlp | grep 90
+tcp        0      0 127.0.0.1:8090          0.0.0.0:*               LISTEN      32074/jtimon
+tcp6       0      0 :::9090                 :::*                    LISTEN      32063/prometheus
 ```
 
-cp src/github.com/nileshsimaria/jtimon/alias.txt alias.txt
-vi vmx1.json
-$GOPATH/bin/jtimon --prometheus --prometheus-port 8090 --config vmx1.json --print --alias-file alias.txt
-
-netstat -tulpen
-
-ifd_in_pkts
-ifd_in_octets
-rate(ifd_in_pkts[2h])
-rate(ifd_in_octets[2m])
-
-_interfaces_interface_subinterfaces_subinterface_state_counters_out_pkts
-_interfaces_interface_state_counters_out_pkts
-_interfaces_interface_state_mtu
-
-
-
+Open a browser and use the prometheus GUI. The url is ```http://<prometheus_ip>:9090```  
 
