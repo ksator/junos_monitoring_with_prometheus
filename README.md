@@ -55,39 +55,10 @@ update the ```prometheus.yml``` configuration file
 ```
 $ vi prometheus.yml
 ```
-```
-# my global config
-global:
-  scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
-  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
-  # scrape_timeout is set to the global default (10s).
-
-# Alertmanager configuration
-alerting:
-  alertmanagers:
-  - static_configs:
-    - targets:
-      # - alertmanager:9093
-
-# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
-rule_files:
-  # - "first_rules.yml"
-  # - "second_rules.yml"
-
-# A scrape configuration containing exactly one endpoint to scrape:
-# Here it's Prometheus itself.
-scrape_configs:
-  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
- 
-  - job_name: 'jtimon'
-    static_configs:
-    - targets: ['localhost:8090']
-```
 ## Start Prometheus
 ```
 ./prometheus --config.file=prometheus.yml
 ```
-
 
 # jtimon
 
@@ -157,23 +128,6 @@ Alternatively, run this command. These 2 commands are equivalents.
 ```
 # vi vmx1.json
 ```
-root@dc-automation:~/jtimon# more vmx1.json
-{
-    "host": "172.30.52.152",
-    "port": 50051,
-    "user": "lab",
-    "password": "m0naco",
-    "cid": "my-client-id",
-    "grpc" : {
-        "ws" : 524288
-    },
-    "paths": [{
-        "path": "/interfaces",
-        "freq": 2000
-    }]
-}
-
-
 
 ## Pass the jtimon configuration file to the container
 
