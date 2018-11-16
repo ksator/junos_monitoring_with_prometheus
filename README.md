@@ -69,7 +69,7 @@ https://forums.juniper.net/t5/Automation/OpenConfig-and-gRPC-Junos-Telemetry-Int
 https://github.com/nileshsimaria/jtimon/wiki/JTIMON-and-Prometheus
 
 ## GO 
-# GO 
+
 find out which ubuntu release you are using
 ```
 $ lsb_release -a
@@ -137,14 +137,9 @@ $ go get github.com/nileshsimaria/jtimon
 ```
 $ ls 
 ```
-run jtimon
 ```
 $ jtimon --help
-```
-## Run jtimon 
-```
-# ./jtimon --help
-Usage of /usr/local/bin/jtimon:
+Usage of jtimon:
       --alias-file string          File containing aliasing information
       --api                        Receive HTTP commands when running
       --compression string         Enable HTTP/2 compression (gzip, deflate)
@@ -167,10 +162,6 @@ Usage of /usr/local/bin/jtimon:
       --stats-handler              Use GRPC statshandler
       --version                    Print version and build-time of the binary and exit
 
-```
-Alternatively, run this command. These 2 commands are equivalents. 
-```
-# docker run -it --rm jtimon --help
 ```
 
 ## create a jtimon configuration file
@@ -208,11 +199,6 @@ run jtimon dockerizedwith the configuration file ```vmx1.json``` and print telem
 $ ./jtimon --prometheus --prometheus-port 8090 --config vmx1.json --print --alias-file alias.txt
 
 ```
-Alternatively, run this command. These 2 commands are equivalents. 
-
-```
-# docker run -it --rm -v $PWD:/u jtimon --config vmx1.json --print --prometheus --prometheus-port 8090 --alias-file alias.txt
-```
 
 # verify 
 
@@ -232,5 +218,22 @@ curl -g 'http://172.30.52.37:9090/api/v1/series?match[]=jtimon'
 ```
 curl -g 'http://172.30.52.37:9090/api/v1/label/job/values'
 ```
+
+cp src/github.com/nileshsimaria/jtimon/alias.txt alias.txt
+vi vmx1.json
+$GOPATH/bin/jtimon --prometheus --prometheus-port 8090 --config vmx1.json --print --alias-file alias.txt
+
+netstat -tulpen
+
+ifd_in_pkts
+ifd_in_octets
+rate(ifd_in_pkts[2h])
+rate(ifd_in_octets[2m])
+
+_interfaces_interface_subinterfaces_subinterface_state_counters_out_pkts
+_interfaces_interface_state_counters_out_pkts
+_interfaces_interface_state_mtu
+
+
 
 
