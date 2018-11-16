@@ -181,6 +181,9 @@ it is optional.
 If JTIMON does not find alias, it would use the names of the path as received from JTI (it will replace '/' with '_').
 
 ```
+$ cp src/github.com/nileshsimaria/jtimon/alias.txt alias.txt
+```
+```
 $ cat alias.txt
 ifd : /interfaces/interface/name
 physical_interface : /interfaces/interface/@name
@@ -192,8 +195,8 @@ ifl:/interfaces/interface/subinterfaces/subinterface/index
 logical-interface-index:/interfaces/interface/subinterfaces/subinterface/@index
 ifl-in-ucast-pkts:/interfaces/interface/subinterfaces/subinterface/state/counters/in-unicast-pkts
 ifl-in-mcast-pkts:/interfaces/interface/subinterfaces/subinterface/state/counters/in-multicast-pkts
+jcluser@ubuntu:~/projects$
 ```
-
 
 ## run jtimon and export data to prometheus 
 
