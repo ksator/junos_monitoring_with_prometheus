@@ -197,10 +197,10 @@ ifl-in-mcast-pkts:/interfaces/interface/subinterfaces/subinterface/state/counter
 
 ## run jtimon and export data to prometheus 
 
-run jtimon dockerizedwith the configuration file ```vmx1.json``` and print telemetry data
+run jtimon with the configuration file ```vmx1.json``` and print telemetry data and export data to prometheus  
  
 ```
-$ ./jtimon --prometheus --prometheus-port 8090 --config vmx1.json --print --alias-file alias.txt
+$ jtimon --prometheus --prometheus-port 8090 --config vmx1.json --print --alias-file alias.txt
 
 ```
 
