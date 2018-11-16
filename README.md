@@ -58,7 +58,7 @@ $ vi prometheus.yml
 ```
 ## Start Prometheus
 ```
-./prometheus --config.file=prometheus.yml
+$ ./prometheus --config.file=prometheus.yml
 ```
 ## prometheus GUI
 
