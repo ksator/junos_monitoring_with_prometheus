@@ -6,23 +6,23 @@ it can also exports telemetry data received from Junos devices to Prometheus. Th
 We will use jtimon to collect openconfig telemetry from junos devices.  
 The data collected by jtimon will be exported to Prometheus
 
-# Junos device details 
+# Junos details 
 
-## version
+## Junos version
 ```
 lab@jedi-vmx-1-vcp> show version | match telemetry
 ```
 ```
 lab@jedi-vmx-1-vcp> show version | match openconfig
 ```
-## configuration 
+## Junos configuration 
 ```
 lab@jedi-vmx-1-vcp> show configuration system services extension-service | display set
 ```
 ```
 lab@jedi-vmx-1-vcp> show configuration system services netconf | display set
 ```
-## troubleshooting 
+## Junos troubleshooting 
 to Display information about sensors, run this command: 
 ```
 lab@jedi-vmx-1-vcp> show agent sensors
@@ -129,27 +129,13 @@ Alternatively, run this command. These 2 commands are equivalents.
 # vi vmx1.json
 ```
 
-## Pass the jtimon configuration file to the container
+## alias
 
-lets run jtimon dockerized while passing the local directory to the container to access the configuration file.  
-
-run jtimon with the configuration file ```vmx1.json``` and Print Telemetry data
- 
-```
-$ ./jtimon --prometheus --prometheus-port 8090 --config vmx1.json --print --alias-file alias.txt
+you can use alias.  
+it is optional.  
+If JTIMON does not find alias, it would use the names of the path as received from JTI (it will replace '/' with '_').
 
 ```
-Alternatively, run this command. These 2 commands are equivalents. 
-
-```
-# docker run -it --rm -v $PWD:/u jtimon --config vmx1.json --print --prometheus --prometheus-port 8090 --alias-file alias.txt
-```
-
-
-alias-file is optional.  
-you can make use of it to give small aliases
-You can provide the mapping as shown below.
-
 $ cat alias.txt
 ifd : /interfaces/interface/name
 physical_interface : /interfaces/interface/@name
@@ -161,24 +147,40 @@ ifl:/interfaces/interface/subinterfaces/subinterface/index
 logical-interface-index:/interfaces/interface/subinterfaces/subinterface/@index
 ifl-in-ucast-pkts:/interfaces/interface/subinterfaces/subinterface/state/counters/in-unicast-pkts
 ifl-in-mcast-pkts:/interfaces/interface/subinterfaces/subinterface/state/counters/in-multicast-pkts
-
-If JTIMON does not find alias, it would use the names of the path as received from JTI (it will replace '/' with '_').
-
-# verify on prometheus
-
-open a browser to prometheus http://<prometheus_ip>:9090
+```
 
 
+## run jtimon and export data to prometheus 
 
+run jtimon dockerizedwith the configuration file ```vmx1.json``` and print telemetry data
+ 
+```
+$ ./jtimon --prometheus --prometheus-port 8090 --config vmx1.json --print --alias-file alias.txt
 
-root@dc-automation:~/jtimon# curl -g 'http://172.30.52.37:9090/api/v1/series?match[]=up'
+```
+Alternatively, run this command. These 2 commands are equivalents. 
 
+```
+# docker run -it --rm -v $PWD:/u jtimon --config vmx1.json --print --prometheus --prometheus-port 8090 --alias-file alias.txt
+```
+
+# verify 
+
+## prometheus GUI
+
+```http://<prometheus_ip>:9090```  
+```http://<prometheus_ip>:9090metrics```  
+
+## prometheus API 
+
+```
+curl -g 'http://172.30.52.37:9090/api/v1/series?match[]=up'
+```
+```
 curl -g 'http://172.30.52.37:9090/api/v1/series?match[]=jtimon'
-
- curl -g 'http://172.30.52.37:9090/api/v1/label/job/values'
-
-
-
-/interfaces/interface[name='lo0']/subinterfaces/subinterface[index='0']/state/counters/in-octets
+```
+```
+curl -g 'http://172.30.52.37:9090/api/v1/label/job/values'
+```
 
 
