@@ -68,28 +68,78 @@ https://github.com/nileshsimaria/jtimon
 https://forums.juniper.net/t5/Automation/OpenConfig-and-gRPC-Junos-Telemetry-Interface/ta-p/316090  
 https://github.com/nileshsimaria/jtimon/wiki/JTIMON-and-Prometheus
 
-## Install jtimon (docker container) 
+## GO 
+# GO 
+find out which ubuntu release you are using
+```
+$ lsb_release -a
+```
+download go
+```
+$ wget https://dl.google.com/go/go1.11.2.linux-amd64.tar.gz
+```
+verify
+```
+$ sha256sum go1.11.2.linux-amd64.tar.gz
 
-### requirements
-Install Docker
+```
+unpack the package
+```
+$ tar xvfz go1.11.2.linux-amd64.tar.gz
+```
+move the go directory to /usr/local
+```
+$ sudo mv go /usr/local
+```
+```
+$ ls /usr/local/go/
+```
+print go version
+```
+$ /usr/local/go/bin/go version
+```
+create a directory projects
+```
+$ mkdir projects
+```
+set environment variables
+The GOPATH variable indicates places to look for Go code
+The GOROOT environment variable indicates the path you choosed to unpack the package
+The PATH environment variable specifies the directories in which the system will check when looking for commands (when a user types in a command without typing the whole path to the file on the command line)
 
-### Build a jtimon Docker image 
+```
+$ export GOPATH=$HOME/projects
+$ export GOROOT=/usr/local/go
+$ export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+```
+Display the value of env variables
+```
+$ printenv
+$ echo $HOME
+$ echo $GOROOT
+$ echo $GOPATH
+$ echo $PATH
+```
+print go version without typing the whole path
+```
+$ go version
+```
 
+
+## Install jtimon 
 ```
-# git clone https://github.com/nileshsimaria/jtimon.git
-# cd jtimon/
-# make docker
+$ cd projects/
 ```
-### check the image
+download and install packages and dependencies
 ```
-# docker images jtimon
-REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-jtimon              latest              2e8967d4ea00        2 hours ago         16.4 MB
+$ go get github.com/nileshsimaria/jtimon
 ```
-### List running containers 
-There is no container running
 ```
-# docker ps | grep jtimon
+$ ls 
+```
+run jtimon
+```
+$ jtimon --help
 ```
 ## Run jtimon 
 ```
