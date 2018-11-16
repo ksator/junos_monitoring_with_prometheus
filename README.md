@@ -203,13 +203,14 @@ run jtimon with the configuration file ```vmx1.json``` and print telemetry data 
 $ jtimon --prometheus --prometheus-port 8090 --config vmx1.json --print --alias-file alias.txt
 ```
 
-# verify jtimon is exporting telemetry data to prometheus
+## verify jtimon is exporting telemetry data to prometheus
 
 ```
 $ netstat -ntlp | grep 90
 tcp        0      0 127.0.0.1:8090          0.0.0.0:*               LISTEN      32074/jtimon
 tcp6       0      0 :::9090                 :::*                    LISTEN      32063/prometheus
 ```
+# Use Prometheus
 
 Open a browser and use the prometheus GUI. The url is ```http://<prometheus_ip>:9090```  
 
