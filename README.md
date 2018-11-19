@@ -214,6 +214,13 @@ $ jtimon --prometheus --prometheus-port 8090 --config dc-vmx-3.json --print --al
 
 ## verify jtimon is exporting telemetry data to prometheus
 
+verify jtimon and prometheus are active
+```
+$ ps -ef | grep "prometheus \| jtimon"
+root      1110     1  0 09:25 ?        00:00:01 ./prometheus --config.file=prometheus.yml
+root      1216     1  0 09:28 ?        00:00:13 jtimon --prometheus --prometheus-port 8090 --config vmx1.json --print --alias-file alias.txt
+```
+verify jtimon is exporting telemetry data to prometheus
 ```
 $ netstat -ntlp | grep 90
 tcp        0      0 127.0.0.1:8090          0.0.0.0:*               LISTEN      32074/jtimon
