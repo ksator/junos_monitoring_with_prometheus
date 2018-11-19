@@ -10,22 +10,28 @@ The data collected by jtimon will be exported to Prometheus
 
 ## Junos version
 ```
-lab@jedi-vmx-1-vcp> show version | match telemetry
+lab@dc-vmx-3> show version | match telemetry
+JUNOS na telemetry [17.4R1.16-C1]
 ```
 ```
-lab@jedi-vmx-1-vcp> show version | match openconfig
+lab@dc-vmx-3> show version | match openconfig
+JUNOS Openconfig [0.0.0.8]
 ```
 ## Junos configuration 
 ```
-lab@jedi-vmx-1-vcp> show configuration system services extension-service | display set
+lab@dc-vmx-3> show configuration system services extension-service | display set
+set system services extension-service request-response grpc clear-text port 50051
+set system services extension-service request-response grpc skip-authentication
+set system services extension-service notification allow-clients address 0.0.0.0/0
 ```
 ```
-lab@jedi-vmx-1-vcp> show configuration system services netconf | display set
+lab@dc-vmx-3> show configuration system services netconf | display set
+set system services netconf ssh
 ```
 ## Junos troubleshooting 
 to Display information about sensors, run this command: 
 ```
-lab@jedi-vmx-1-vcp> show agent sensors
+lab@dc-vmx-3> show agent sensors
 ```
 
 #  Prometheus
