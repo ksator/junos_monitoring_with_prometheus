@@ -230,4 +230,12 @@ tcp6       0      0 :::9090                 :::*                    LISTEN      
 
 Open a browser and use the prometheus GUI. The url is ```http://<prometheus_ip>:9090```  
 
+Examples  
+
 ![ifd_in_pkts.png](resources/ifd_in_pkts.png)  
+![ifd_in_octets.png](resources/ifd_in_octets.png)  
+![rate_ifd_in_pkts_2m.png](resources/rate_ifd_in_pkts_2m.png)  
+![_interfaces_interface_state_counters_out_pkts_console.png](resources/_interfaces_interface_state_counters_out_pkts_console.png)  
+![_interfaces_interface_state_counters_out_pkts_rate.png](resources/_interfaces_interface_state_counters_out_pkts_rate.png)  
+![_interfaces_interface_state_counters_out_pkts_graph.png](resources/_interfaces_interface_state_counters_out_pkts_graph.png)  
+
