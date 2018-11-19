@@ -177,9 +177,9 @@ Usage of jtimon:
 ```
 
 ## create a jtimon configuration file
-[use this file](vmx1.json)
+[use this file](dc-vmx-3.json)
 ```
-$ vi vmx1.json
+$ vi dc-vmx-3.json
 ```
 
 ## alias
@@ -207,9 +207,9 @@ ifl-in-mcast-pkts:/interfaces/interface/subinterfaces/subinterface/state/counter
 
 ## run jtimon and export data to prometheus 
 
-run jtimon with the configuration file ```vmx1.json``` and print telemetry data and export telemetry data to prometheus  
+run jtimon with the configuration file ```dc-vmx-3.json``` and print telemetry data and export telemetry data to prometheus  
 ```
-$ jtimon --prometheus --prometheus-port 8090 --config vmx1.json --print --alias-file alias.txt
+$ jtimon --prometheus --prometheus-port 8090 --config dc-vmx-3.json --print --alias-file alias.txt
 ```
 
 ## verify jtimon is exporting telemetry data to prometheus
